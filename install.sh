@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-REPO="duanckham/pitch"
+REPO="courtifyai/pitch"
 BINARY_NAME="pitch"
 
 # Detect OS
