@@ -61,8 +61,8 @@ echo "➡️ Unzipping..."
 unzip -q "$ASSET"
 
 echo "➡️ Installing to $HOME/.local/bin"
-sudo mv "${BINARY_NAME}-${OS_TAG}-${ARCH_TAG}" "$HOME/.local/bin/${BINARY_NAME}"
-sudo chmod +x "$HOME/.local/bin/${BINARY_NAME}"
+mv "${BINARY_NAME}-${OS_TAG}-${ARCH_TAG}" "$HOME/.local/bin/${BINARY_NAME}"
+chmod +x "$HOME/.local/bin/${BINARY_NAME}"
 
 echo "✅ Installation complete!"
 echo ""
