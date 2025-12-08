@@ -31,11 +31,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install zig
+        uses: goto-bus-stop/setup-zig@v2
+
+      - name: Install cargo-zigbuild
+        run: cargo install cargo-zigbuild
+
       - name: Install Rust target
         run: rustup target add ${{ matrix.target }}
 
       - name: Build
-        run: cargo build --release --target=${{ matrix.target }}
+        run: |
+          if [[ "${{ matrix.target }}" == *"linux"* ]]; then
+            cargo zigbuild --release --target=${{ matrix.target }}
+          else
+            cargo build --release --target=${{ matrix.target }}
+          fi
 
       - name: Prepare artifact
         run: |
@@ -64,6 +75,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref_name }}
+          tag_name: ${{ github.sha }}
           draft: true
           files: dist/**/*.zip
