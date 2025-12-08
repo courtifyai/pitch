@@ -17,16 +17,16 @@ jobs:
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-            out: patent-linux-x64
+            out: pitch-linux-x64
           - os: ubuntu-latest
             target: aarch64-unknown-linux-gnu
-            out: patent-linux-arm64
+            out: pitch-linux-arm64
           - os: macos-latest
             target: x86_64-apple-darwin
-            out: patent-macos-x64
+            out: pitch-macos-x64
           - os: macos-latest
             target: aarch64-apple-darwin
-            out: patent-macos-arm64
+            out: pitch-macos-arm64
 
     steps:
       - uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
       - name: Prepare artifact
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/patent dist/${{ matrix.out }}
+          cp target/${{ matrix.target }}/release/pitch dist/${{ matrix.out }}
           cd dist
           zip ${{ matrix.out }}.zip ${{ matrix.out }}
 
