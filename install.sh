@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-REPO="<USER>/<REPO>"
+REPO="duanckham/pitch"
 BINARY_NAME="pitch"
 
 # Detect OS
@@ -60,9 +60,9 @@ curl -fSL -o "$ASSET" "$DOWNLOAD_URL"
 echo "➡️ Unzipping..."
 unzip -q "$ASSET"
 
-echo "➡️ Installing to /usr/local/bin (requires sudo)..."
-sudo mv "${BINARY_NAME}-${OS_TAG}-${ARCH_TAG}" "/usr/local/bin/${BINARY_NAME}"
-sudo chmod +x "/usr/local/bin/${BINARY_NAME}"
+echo "➡️ Installing to $HOME/.local/bin"
+sudo mv "${BINARY_NAME}-${OS_TAG}-${ARCH_TAG}" "$HOME/.local/bin/${BINARY_NAME}"
+sudo chmod +x "$HOME/.local/bin/${BINARY_NAME}"
 
 echo "✅ Installation complete!"
 echo ""
