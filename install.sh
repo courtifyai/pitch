@@ -60,9 +60,16 @@ curl -fSL -o "$ASSET" "$DOWNLOAD_URL"
 echo "➡️ Unzipping..."
 unzip -q "$ASSET"
 
-echo "➡️ Installing to $HOME/.local/bin"
-mv "${BINARY_NAME}-${OS_TAG}-${ARCH_TAG}" "$HOME/.local/bin/${BINARY_NAME}"
-chmod +x "$HOME/.local/bin/${BINARY_NAME}"
+if [ "$OS_TAG" = "linux" ]; then
+    INSTALL_DIR="/usr/local/bin"
+else
+    INSTALL_DIR="$HOME/.local/bin"
+fi
+
+echo "➡️ Installing to $INSTALL_DIR"
+mkdir -p "$INSTALL_DIR"
+mv "${BINARY_NAME}-${OS_TAG}-${ARCH_TAG}" "$INSTALL_DIR/${BINARY_NAME}"
+chmod +x "$INSTALL_DIR/${BINARY_NAME}"
 
 echo "✅ Installation complete!"
 echo ""
